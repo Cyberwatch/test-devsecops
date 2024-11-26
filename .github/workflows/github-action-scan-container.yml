@@ -1,0 +1,14 @@
+name: GitHub Actions CI Scan Container
+on: [push]
+jobs:
+  CI-Container-Scanner:
+    runs-on: ubuntu-latest
+    container:
+      image: cyberwatch/ci-container-scanner
+    env:
+      CYBERWATCH_SCANNER_ENDPOINT: ${{ secrets.CYBERWATCH_SCANNER_ENDPOINT }}
+      CYBERWATCH_SCANNER_USER: ${{ secrets.CYBERWATCH_SCANNER_USER }}
+      CYBERWATCH_SCANNER_PASSWORD: ${{ secrets.CYBERWATCH_SCANNER_PASSWORD }}
+      CS_IMAGE: library/ruby:3.0
+    steps:
+      - run: gtcs
